@@ -1,0 +1,33 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --green: #1E7C4B;
+  --green-dark: #155c37;
+  --green-light: #e8f5ee;
+  --gold: #D4881E;
+  --gold-light: #fdf3e3;
+  --cream: #FAF8F3;
+  --dark: #1a1a1a;
+  --grey: #555;
+  --grey-light: #f0eeea;
+  --border: #e0ddd6;
+  --white: #ffffff;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --font-poppins: var(--font-poppins);
+  --font-inter: var(--font-inter);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-inter), 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
