@@ -1,25 +1,19 @@
-{
-  "name": "jobdeyeasy",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "14.2.3",
-    "react": "^18",
-    "react-dom": "^18",
-    "@supabase/supabase-js": "^2.43.4"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3"
-  }
-}
+.page { min-height: 100vh; background: var(--cream); display: flex; align-items: center; justify-content: center; padding: 24px; }
+.card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 48px 40px; width: 100%; max-width: 420px; box-shadow: var(--shadow-lg); text-align: center; }
+.logo { font-size: 1.3rem; font-weight: 800; text-decoration: none; letter-spacing: -0.3px; display: block; margin-bottom: 24px; }
+.green { color: var(--green); }
+.gold { color: var(--gold); }
+.card h1 { font-size: 1.6rem; font-weight: 800; color: var(--dark); margin-bottom: 6px; letter-spacing: -0.5px; }
+.card > p { font-size: 0.9rem; color: var(--grey); margin-bottom: 28px; }
+.form { display: flex; flex-direction: column; gap: 18px; text-align: left; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.field label { font-size: 0.875rem; font-weight: 600; color: var(--dark); }
+.field input { padding: 12px 16px; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font-size: 0.95rem; font-family: inherit; color: var(--dark); outline: none; transition: border-color 0.2s; }
+.field input:focus { border-color: var(--green); }
+.error { background: #FEF2F2; border: 1px solid #FECACA; color: #DC2626; padding: 10px 14px; border-radius: var(--radius-sm); font-size: 0.85rem; }
+.btnPrimary { background: var(--green); color: var(--white); padding: 13px; border-radius: 50px; font-weight: 700; font-size: 0.95rem; border: none; cursor: pointer; font-family: inherit; transition: background 0.2s; }
+.btnPrimary:hover:not(:disabled) { background: var(--green-dark); }
+.btnPrimary:disabled { opacity: 0.6; cursor: not-allowed; }
+.footer { font-size: 0.85rem; color: var(--grey); margin-top: 20px; }
+.footer a { color: var(--green); font-weight: 600; text-decoration: none; }
+.footer a:hover { text-decoration: underline; }
