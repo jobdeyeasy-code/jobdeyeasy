@@ -9,14 +9,42 @@ export default function Hero() {
           Founding 20 spots open — lock in ₦1,500/month for life
         </div>
         <h1 className={styles.h1}>
-          We do the <span className={styles.accent}>hard part.</span> You hit Send.
+          We do the <span className={styles.accent}>hard part.</span><br />You hit Send.
         </h1>
         <p className={styles.sub}>
-          JobDeyEasy finds jobs that fit you and prepares your entire application — tailored CV,
-          matching cover letter, and exactly where to send it. All you do is copy, paste, and send.
+          JobDeyEasy finds jobs that fit you and prepares everything — a tailored CV,
+          a matching cover letter, and a ready-to-send email. All you do is attach and send.
         </p>
+
+        {/* Deliverable pills */}
+        <div className={styles.deliverables}>
+          <div className={styles.pill}>
+            <span className={styles.pillIcon}>📄</span>
+            <div>
+              <div className={styles.pillTitle}>Tailored CV</div>
+              <div className={styles.pillSub}>Rewritten for the exact job</div>
+            </div>
+          </div>
+          <div className={styles.pillDivider}>+</div>
+          <div className={styles.pill}>
+            <span className={styles.pillIcon}>✉️</span>
+            <div>
+              <div className={styles.pillTitle}>Cover Letter</div>
+              <div className={styles.pillSub}>Personalised, not generic</div>
+            </div>
+          </div>
+          <div className={styles.pillDivider}>+</div>
+          <div className={styles.pill}>
+            <span className={styles.pillIcon}>📧</span>
+            <div>
+              <div className={styles.pillTitle}>Send-ready Email</div>
+              <div className={styles.pillSub}>Exactly where & how to apply</div>
+            </div>
+          </div>
+        </div>
+
         <div className={styles.actions}>
-          <a href="#signup" className={styles.btnPrimary}>Start Free Trial →</a>
+          <a href="/signup" className={styles.btnPrimary}>Start Free Trial →</a>
           <a href="#how" className={styles.btnSecondary}>See how it works</a>
         </div>
         <div className={styles.trust}>
@@ -45,19 +73,19 @@ export default function Hero() {
           </div>
           <div className={styles.cardBody}>
             <div className={styles.msg}>
-              <div className={`${styles.bubble} ${styles.them}`}>Hi! I need help applying for jobs. I don&apos;t even have a CV 😭</div>
+              <div className={`${styles.bubble} ${styles.them}`}>Hi! I need help applying. I don&apos;t have a CV 😭</div>
               <div className={styles.time}>9:14 AM</div>
             </div>
             <div className={`${styles.msg} ${styles.right}`}>
-              <div className={`${styles.bubble} ${styles.us}`}>No problem at all! We&apos;ll build your CV from scratch. Just answer 8 quick questions 👇</div>
+              <div className={`${styles.bubble} ${styles.us}`}>No problem! We&apos;ll build your CV, cover letter, and send email — all from scratch 👇</div>
               <div className={styles.time}>9:15 AM</div>
             </div>
             <div className={styles.msg}>
-              <div className={`${styles.bubble} ${styles.them}`}>Okay done! What happens next?</div>
+              <div className={`${styles.bubble} ${styles.them}`}>Done! What happens next?</div>
               <div className={styles.time}>9:32 AM</div>
             </div>
             <div className={`${styles.msg} ${styles.right}`}>
-              <div className={`${styles.bubble} ${styles.us}`}>✅ Your CV is ready. We found 3 jobs that fit you perfectly. Everything arrives within 24 hours.</div>
+              <div className={`${styles.bubble} ${styles.us}`}>✅ Your CV, cover letter, and send email are ready. Delivering now — everything within 24 hours.</div>
               <div className={styles.time}>9:33 AM</div>
             </div>
           </div>

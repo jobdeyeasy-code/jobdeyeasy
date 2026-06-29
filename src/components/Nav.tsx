@@ -24,7 +24,7 @@ export default function Nav() {
           <li><a href="#how">How it works</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#faq">FAQ</a></li>
-          <li><a href="#signup" className={styles.cta}>Start Free Trial</a></li>
+          <li><a href="/signup" className={styles.cta}>Start Free Trial</a></li>
         </ul>
       </div>
     </nav>
