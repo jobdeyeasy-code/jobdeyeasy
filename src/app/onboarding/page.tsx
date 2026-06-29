@@ -47,6 +47,7 @@ export default function OnboardingPage() {
   const [data, setData] = useState<SurveyData>(empty)
   const [cvFile, setCvFile] = useState<File | null>(null)
   const [loading, setLoading] = useState(false)
+  const [saveError, setSaveError] = useState('')
   const [done, setDone] = useState(false)
 
   function set(field: keyof SurveyData, value: string) {
@@ -63,26 +64,44 @@ export default function OnboardingPage() {
 
   async function handleSubmit() {
     setLoading(true)
+    setSaveError('')
     try {
-      const { data: { user } } = await supabase.auth.getUser()
-      if (!user) return
-      await supabase.from('client_materials').insert({
+      const { data: { user }, error: authError } = await supabase.auth.getUser()
+      if (authError || !user) {
+        setSaveError('Your session has expired. Please go back to /login and sign in again.')
+        setLoading(false)
+        return
+      }
+
+      const { error: materialsError } = await supabase.from('client_materials').insert({
         user_id: user.id,
         built_from_survey: hasCV === false,
         survey_responses: hasCV === false ? data : null,
         hidden_skills_notes: data.hiddenSkills,
       })
-      await supabase.from('profiles').update({
+      if (materialsError) {
+        setSaveError(`Could not save your profile: ${materialsError.message}`)
+        setLoading(false)
+        return
+      }
+
+      const { error: profileError } = await supabase.from('profiles').update({
         phone_whatsapp: data.phone,
         preferred_location: data.location,
-        preferred_job_titles: data.jobTitles.split(',').map(s => s.trim()).filter(Boolean),
+        preferred_job_titles: data.jobTitles ? data.jobTitles.split(',').map(s => s.trim()).filter(Boolean) : [],
         preferred_salary_min: data.salaryMin ? parseInt(data.salaryMin) : null,
         preferred_salary_max: data.salaryMax ? parseInt(data.salaryMax) : null,
-        preferred_work_type: data.workType as 'remote' | 'hybrid' | 'onsite' | 'any',
+        preferred_work_type: (data.workType || 'any') as 'remote' | 'hybrid' | 'onsite' | 'any',
       }).eq('id', user.id)
+      if (profileError) {
+        setSaveError(`Could not update your profile: ${profileError.message}`)
+        setLoading(false)
+        return
+      }
+
       setDone(true)
     } catch (err) {
-      console.error(err)
+      setSaveError(`Unexpected error: ${err instanceof Error ? err.message : 'Please try again.'}`)
     }
     setLoading(false)
   }
@@ -197,6 +216,7 @@ export default function OnboardingPage() {
             <button className={styles.btnPrimary} onClick={handleSubmit} disabled={!cvFile || loading}>
               {loading ? 'Saving...' : 'Submit and continue →'}
             </button>
+            {saveError && <div className={styles.saveError}>{saveError}</div>}
             <button className={styles.backBtn} onClick={() => setHasCV(null)}>← Back</button>
           </div>
         </div>
@@ -384,6 +404,7 @@ export default function OnboardingPage() {
           )}
 
           <div className={styles.navButtons}>
+            {saveError && <div className={styles.saveError}>{saveError}</div>}
             {surveyStep > 0 && (
               <button className={styles.backBtn} onClick={() => setSurveyStep(s => s - 1)}>← Back</button>
             )}
